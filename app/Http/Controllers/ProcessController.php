@@ -49,4 +49,28 @@ class ProcessController extends Controller
     }
 
 
+    /**
+     * Kill process by pid
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return boolean $result
+     */
+    public function kill(Request $request) {
+
+        $pid = $request->input('pid');
+        if (empty($pid) || !is_numeric($pid)) {
+            return response()
+                ->json(['code' => -1, 'data' => "pid param error"]);
+        }
+
+        $cmd = "kill -9 {$pid} ";
+        exec($cmd, $output, $return_val);
+        $return_msg = array(
+             '0' => 'kill process success',
+             '1' => 'no such process'
+        );
+        return response()
+            ->json(['code' => $return_val, 'data' => $return_msg[$return_val]]);
+    }
+
 }

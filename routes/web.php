@@ -15,5 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Process
+// Process-list
 Route::get('/process/list', 'ProcessController@list');
+
+// Process-kill
+Route::get('/process/kill/', 'ProcessController@kill');
