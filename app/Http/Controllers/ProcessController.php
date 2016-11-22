@@ -24,7 +24,7 @@ class ProcessController extends Controller
         $cmd = "ps aux ";
 
         if (!empty($filter)) {
-            $cmd .= ("|" . $filter);
+            $cmd .= ("| grep " . $filter);
         }
         exec($cmd, $output, $return_val);
         if ($return_val != 0) {
