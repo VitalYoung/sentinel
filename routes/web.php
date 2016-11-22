@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Process
+Route::get('/process/list', 'ProcessController@list');
